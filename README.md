@@ -1,26 +1,14 @@
 # Simple sudoers role
 
-This role installs sudo package, ensure that /etc/sudoers.d included and
-create or remove sudoers files in /etc/sudoers.d.
-For now, each sudoer has access to all commands within a variable set of users, and global setting determines whether
-NOPASSWD is set or not.
+This role installs the sudo package, ensures that /etc/sudoers.d is included and
+creates or removes sudoers files in /etc/sudoers.d.
 
 ## Variables
 
  * sudoers_filename - file name in /etc/sudoers.d (required)
- * sudoers - A dictonary of users who have sudo access and to what users they have 
-   permission to execute commands as. Use '%foo' to specify that users in a given
-   group have sudo access.
+ * sudoers - A list of users who have some sort of sudo access.
    * defaults: []
-   * example: Check ```ansible-sudoers.yml``` playbook for an example where user 
-   ```testone``` as permission to execute commands as users ```vagrant``` and
-   ```root```and user ```testtwo``` has permission to execute commands as any user.
- * sudoers_nopasswd - if set, NOPASSWD is added to all sudoers entries. Use this
-   when users don't have passwords set.
-   * default: true
- * sudoers_remove - if enabled, remove /etc/sudoers.d/{{ sudoers\_filename }} instead
-   of create.
+   * example: Check ```ansible-sudoers.yml``` playbook for examples.
+ * sudoers_remove - if enabled, removes /etc/sudoers.d/{{ sudoers\_filename }} instead
+   of creating it.
    * default: false
-
-## TODO
- * Ability to create users with not full access
