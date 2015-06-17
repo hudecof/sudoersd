@@ -1,7 +1,7 @@
 ---
 sudoers_apt_cache_valid_time: 3600
 
-# Who has sudo access - use %foo for groups
+# Default to an empty list
 sudoers: []
 
 # Remove file from /etc/sudoers.d?
