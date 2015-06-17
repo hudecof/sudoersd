@@ -25,6 +25,56 @@ None.
 Example Playbook
 ----------------
 
+```yaml
+---
+- hosts: all
+  sudo: yes
+
+# The following vars will generate these lines in /etc/sudoers.d/testing:
+#
+# testone  somehost=(vagrant, otheruser) NOPASSWD: /usr/bin/foo, /usr/bin/bar, (root) PASSWD: /usr/bin/baz
+# testtwo  somehost=(ALL) PASSWD: /usr/bin/foo
+# testthree  somehost=(ALL) PASSWD: /usr/bin/baz
+# testfour  ALL=(ALL) PASSWD: ALL
+
+  vars:
+    test_sudoers:
+      - user: "testone"
+        host: "somehost"
+        user_commands:
+          - runas_users:
+              - "vagrant"
+              - "otheruser"
+            commands:
+              - "/usr/bin/foo"
+              - "/usr/bin/bar"
+            nopasswd: true
+          - runas_users:
+              - "root"
+            commands:
+              - "/usr/bin/baz"
+            nopasswd: false
+      - user: "testtwo"
+        host: "somehost"
+        user_commands:
+          - commands:
+              - "/usr/bin/foo"
+            nopasswd: false
+      - user: "testthree"
+        host: "somehost"
+        user_commands:
+          - nopasswd: false
+            commands:
+              - "/usr/bin/baz"
+      - user: "testfour"
+
+  roles:
+    - { role: sudoersd, sudoers_filename: testing, sudoers: "{{ test_sudoers }}" }
+# Uncomment following line to remove /etc/sudoers.d/testing
+#    - { role: sudoersd, sudoers_filename: testing, sudoers_remove: true }
+
+```
+
 
 License
 -------
