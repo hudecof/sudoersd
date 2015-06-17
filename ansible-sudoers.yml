@@ -47,6 +47,8 @@
       with_items:
         - "testone"
         - "testtwo"
+        - "testthree"
+        - "testfour"
 
   roles:
     - .
