@@ -3,6 +3,8 @@ sudoersd
 
 This role installs the sudo RPM, ensures that /etc/sudoers.d is included and creates or removes sudoers files in /etc/sudoers.d.
 
+This is a fork of knopki's sudoers playbook (https://galaxy.ansible.com/list#/roles/325).
+
 Requirements
 ------------
 
