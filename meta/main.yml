@@ -1,8 +1,8 @@
 ---
 galaxy_info:
   author: Martin Chlumsky
-  description: Simple /etc/sudoers.d management role
-  license: MIT
+  description: /etc/sudoers.d management role
+  license: BSD
   min_ansible_version: 1.9
   platforms:
   - name: EL
