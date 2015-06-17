@@ -1,15 +1,6 @@
 ---
-- name: Install sudo (Debian-like)
-  apt: pkg=sudo state=installed update_cache=yes cache_valid_time={{ sudoers_apt_cache_valid_time }}
-  when: ansible_os_family == "Debian"
-
 - name: Install sudo (RedHat-like)
   yum: name=sudo state=present
-  when: ansible_os_family == "RedHat"
-
-- name: Install sudo (SUSE-like)
-  zypper: name=sudo state=present
-  when: ansible_os_family == "SUSE"
 
 - name: Create sudoers.d directory
   file:
