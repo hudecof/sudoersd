@@ -27,16 +27,15 @@ Example Playbook
 
 ```yaml
 ---
-- hosts: all
-  sudo: yes
-
-# The following vars will generate these lines in /etc/sudoers.d/testing:
+# The following playbook will generate these lines in /etc/sudoers.d/testing:
 #
 # testone  somehost=(vagrant, otheruser) NOPASSWD: /usr/bin/foo, /usr/bin/bar, (root) PASSWD: /usr/bin/baz
 # testtwo  somehost=(ALL) PASSWD: /usr/bin/foo
 # testthree  somehost=(ALL) PASSWD: /usr/bin/baz
 # testfour  ALL=(ALL) PASSWD: ALL
 
+- hosts: all
+  sudo: yes
   vars:
     test_sudoers:
       - user: "testone"
@@ -67,7 +66,6 @@ Example Playbook
             commands:
               - "/usr/bin/baz"
       - user: "testfour"
-
   roles:
     - { role: sudoersd, sudoers_filename: testing, sudoers: "{{ test_sudoers }}" }
 # Uncomment following line to remove /etc/sudoers.d/testing
